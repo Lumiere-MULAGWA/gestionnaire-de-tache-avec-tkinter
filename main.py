@@ -38,9 +38,9 @@ def add_task():
 def remove_task():
     """ module remove_task
 
-        this module add a task a list 
-        if a task is empty not add a list 
-        else add a list 
+        this module remove a curent task a list 
+        if a task is empty not reove a list 
+        else remove a list the taask selected
         ############################
         
     """
