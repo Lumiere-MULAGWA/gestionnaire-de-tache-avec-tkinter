@@ -1,38 +1,70 @@
 import tkinter as tk
+import customtkinter as ctk 
+"""
+    manage a task in a customtkinter
+    
+    fonction to use :
+                    add_task():
+                        add to list a task to write
+                    remove_task():
+                        remove to list a task to select 
+"""
 
-class TaskManager:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Gestionnaire de tâches")
-        
-        self.tasks = []
-        
-        self.task_entry = tk.Entry(self.root, width=50)
-        self.task_entry.pack(pady=20)
-        
-        self.add_button = tk.Button(self.root, text="Ajouter une tâche", command=self.add_task)
-        self.add_button.pack(pady=10)
-        
-        self.task_list = tk.Listbox(self.root, width=50)
-        self.task_list.pack(pady=20)
-        
-        self.remove_button = tk.Button(self.root, text="Supprimer la tâche sélectionnée", command=self.remove_task)
-        self.remove_button.pack(pady=10)
-        
-    def add_task(self):
-        task_text = self.task_entry.get()
-        if task_text:
-            self.tasks.append(task_text)
-            self.task_list.insert(tk.END, task_text)
-            self.task_entry.delete(0, tk.END)
-            
-    def remove_task(self):
-        selected_task_index = self.task_list.curselection()
-        if selected_task_index:
-            task_index = selected_task_index[0]
-            del self.tasks[task_index]
-            self.task_list.delete(task_index)
+ctk.set_appearance_mode("system")
+ctk.set_default_color_theme("blue")
 
-root = tk.Tk()
-task_manager = TaskManager(root)
-root.mainloop()
+app =  ctk.CTk()
+app.geometry("400x240")
+
+task = []
+
+def add_task():
+    """ module add_task
+
+        this module add a task a list 
+        if a task is empty not add a list 
+        else add a list 
+        ############################
+        
+    """
+    task_text = task_user.get()
+    
+    if task_text:
+        task.append(task_text)
+        task_user.delete(0, ctk.END)
+        task_list.insert(ctk.END, task_text)
+        
+
+def remove_task():
+    """ module remove_task
+
+        this module add a task a list 
+        if a task is empty not add a list 
+        else add a list 
+        ############################
+        
+    """
+    check_index = task_list.curselection()
+    if check_index:
+        task_index = check_index[0]
+        del task[task_index]
+        task_list.delete(task_index)
+
+
+user_label = ctk.CTkLabel(app,text="Enter your Task :")
+user_label.grid(row = 0,column=0)
+task_user = ctk.CTkEntry(app)
+task_user.grid(row = 0,column=1)
+
+button_add = ctk.CTkButton(app,text="Button Add" ,command= add_task)
+button_add.grid(row = 1,column=0)
+
+button_remove = ctk.CTkButton(app,text="Button Remove",command = remove_task)
+button_remove.grid(row = 1,column=1,padx=10,pady=10)
+
+task_list = tk.Listbox(app,width=50)
+task_list.grid(row=0,column=2)
+
+app.mainloop()
+
+
