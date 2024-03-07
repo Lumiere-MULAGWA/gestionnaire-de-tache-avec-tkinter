@@ -15,6 +15,7 @@ ctk.set_default_color_theme("blue")
 
 app =  ctk.CTk()
 app.geometry("400x240")
+app.title("to do list")
 
 task = []
 
@@ -62,7 +63,7 @@ button_add.grid(row = 1,column=0)
 button_remove = ctk.CTkButton(app,text="Button Remove",command = remove_task)
 button_remove.grid(row = 1,column=1,padx=10,pady=10)
 
-task_list = tk.Listbox(app,width=50)
+task_list = ctk.Listbox(app,width=50)
 task_list.grid(row=0,column=2)
 
 app.mainloop()
